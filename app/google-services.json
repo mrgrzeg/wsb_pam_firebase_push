@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "570917553911",
+    "firebase_url": "https://puss-app-test.firebaseio.com",
+    "project_id": "puss-app-test",
+    "storage_bucket": "puss-app-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570917553911:android:5dc3997ebb26ea5b92b5f2",
+        "android_client_info": {
+          "package_name": "pl.mrgrzeg.wsb.firebasepush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570917553911-bdcht2q0oqntd4irovvv1qps75hku1oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqR9TAYeAP5UiG3K5gst1zzPffinQJErY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570917553911-bdcht2q0oqntd4irovvv1qps75hku1oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
