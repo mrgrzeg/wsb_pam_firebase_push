@@ -3,7 +3,9 @@ package pl.mkonkel.wsb.firebasepush
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -31,12 +33,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService()
         Log.d("MESSAGE", "title: $title / message: $message ")
 
         createNotificationChanel()
-        bulidNotification()
-       val notification:Notification= bulidNotification(title)
-
+        buildNotification()
+        val pendingIntent = createPendingIntent(title, message)
+        val notification = buildNotification(title, pendingIntent)
+        notificationManager.notify(1, notification)
     }
 
+private fun createPendingIntent(title: String?, message: String?)
+{
+    val resultIntent = Intent( this, DetailActivity::class.java)
 
+    resultIntent.putExtra(NOTIFICATION_MESSAGE_TITLE,title)
+    resultIntent.putExtra(NOTIFICATION_MESSAGE_BODY,message)
+    resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+}
 
 
     //    TODO: Add a helper method for creating the Notification Channel
@@ -53,7 +64,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService()
     {
 
         val notificationChannel=NotificationChannel(
-            CHANEL_ID
+            CHANNEL_ID,"Deflaut",
+            NotificationManager.IMPORTANCE_DEFAULT
         )
 
 
@@ -66,11 +78,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService()
         notificationManager.createNotificationChannel(notificationChannel)
     }
 
-    private fun bulidNotification(notificationTitle: String?):Notification{
+    private fun buildNotification(notificationTitle: String?):Notification{
         return Notification.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_default_notification)
             .setContentTitle("Uwaga")
             .setContentText(notificationTitle)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
 
@@ -95,5 +108,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService()
  {
       const val NOTIFICATION_MESSAGE_TITLE = "message_title"
        const val NOTIFICATION_MESSAGE_BODY = "message_body"
+     const val CHANNEL_ID="123456789"
    }
 }
